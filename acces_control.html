@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Nice Test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        window.onload = function () {
+            document.getElementById("demo").innerHTML = "Hello We Had Loaded JavaScript!";
+            $("#button1").on('click', firstClick)
+
+        }
+
+        function firstClick() {
+            $("#demo").text("Dons el botó amb jq funciona :D");
+            $("#button1").on('click', secondClick)
+        }
+        function secondClick() {
+            $("#demo").text("Que pesao el ferrer amb el blockchain no? HEHE ;P");
+            $("#button1").on('click', firstClick)
+        }
+                /*$.get("demo_test.asp", function (data, status) {
+                   alert("Data: " + data + "\nStatus: " + status);
+               });*/
+    </script>
+</head>
+<body>
+    <h2 id="demo">No s'ha carregat el js</h2>
+    <button id="button1">Click on me!!</button>
+
+</body>
+</html>
