@@ -8,26 +8,41 @@
     <script>
         window.onload = function () {
             document.getElementById("demo").innerHTML = "Hello We Had Loaded JavaScript!";
-            $("#button1").on('click', firstClick)
-
+            $("#button1").on('click', readDataonClick)
         }
 
         function firstClick() {
-            $("#demo").text("Dons el botó amb jq funciona :D");
+            $("#demo").text("Dons el botó amb ja funciona :D");
             $("#button1").on('click', secondClick)
         }
         function secondClick() {
             $("#demo").text("Que pesao el ferrer amb el blockchain no? HEHE ;P");
             $("#button1").on('click', firstClick)
         }
-                /*$.get("demo_test.asp", function (data, status) {
-                   alert("Data: " + data + "\nStatus: " + status);
-               });*/
+        function readDataonClick() {
+            $("#demo").text("Comprova la terminal");
+            $.get("http://localhost:3161/devices/simulator/inventory", function (data, status) {
+				
+				var $xml = $(data);
+				var $item = $xml.find("item");
+
+				$item.each(function(){
+    
+					var tag = $(this).find('epc').text();
+					console.log("tag: " + tag);
+					$('<p>'+tag+'</p>').appendTo('#Content');
+				});
+                //console.log("Data: " + (new XMLSerializer()).serializeToString(data));
+            });
+        }
+		
+               
     </script>
 </head>
 <body>
     <h2 id="demo">No s'ha carregat el js</h2>
     <button id="button1">Click on me!!</button>
-
+	<h1 id="Title">Tags Detectades: </h2>
+	<div id="Content"></div>
 </body>
 </html>
